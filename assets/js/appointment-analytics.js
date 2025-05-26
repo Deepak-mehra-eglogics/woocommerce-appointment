@@ -12,8 +12,13 @@
 //const { __ } = wp.i18n;
 const { addFilter } = wp.hooks;
 
-// Filter to add a new item in the Analytics dropdows.
-addFilter( 'woocommerce_admin_products_report_filters', 'woocommerce-appointments/admin/analytics', ( filterConfig ) => {
+/**
+ * Add a PRODUCTS item to a dropdown to a report.
+ *
+ * @param {Array} filterConfig - set of filters in a report.
+ * @return {Array} amended set of filters.
+ */
+const addProductsFilters = ( filterConfig ) => {
 	'use strict';
 
 	let valueToPush = { };
@@ -28,19 +33,55 @@ addFilter( 'woocommerce_admin_products_report_filters', 'woocommerce-appointment
 	} );
 
 	return filterConfig;
-}, 10 );
+};
 
+addFilter( 'woocommerce_admin_products_report_filters', 'woocommerce-appointments', addProductsFilters );
+
+//////////////////////////////////////////////////////////
+
+/**
+ * Add a MAIN dropdown to a report.
+ *
+ * @param {Array} filters - set of filters in a report.
+ * @return {Array} amended set of filters.
+ */
 /*
-// Filter to add a new item in the Product Type dropdowns.
-// Add custom product types to Add Products onboarding list.
-addFilter( 'experimental_woocommerce_tasklist_product_types', 'woocommerce-appointments', (productTypes) => [
-	...productTypes,
-	{
-		key: 'appointment',
-		title: __( 'Appointable Product', 'woocommerce-appointments' ),
-		content: __( 'An item that can be scheduled. Variations include cost and availability.', 'woocommerce-appointments' ),
-		//before: <Calendar />,
-		//after: <Icon icon={chevronRight} />,
-	},
-], 10 );
+const addStaffFilters = ( filters ) => {
+	'use strict';
+
+	return [
+		{
+			label: wc_appointments_analytics_params.i18n_staff,
+			staticParams: [],
+			param: 'staff',
+			showFilters: () => true,
+			defaultValue: 'all',
+			filters: [ ...( wcSettings.multiStaff || [] ) ]
+		},
+		...filters
+	];
+};
+
+addFilter( 'woocommerce_admin_revenue_report_filters', 'woocommerce-appointments', addStaffFilters );
+addFilter( 'woocommerce_admin_orders_report_filters', 'woocommerce-appointments', addStaffFilters );
+addFilter( 'woocommerce_admin_products_report_filters', 'woocommerce-appointments', addStaffFilters );
+addFilter( 'woocommerce_admin_categories_report_filters', 'woocommerce-appointments', addStaffFilters );
+addFilter( 'woocommerce_admin_coupons_report_filters', 'woocommerce-appointments', addStaffFilters );
+addFilter( 'woocommerce_admin_taxes_report_filters', 'woocommerce-appointments', addStaffFilters );
+addFilter( 'woocommerce_admin_dashboard_filters', 'woocommerce-appointments', addStaffFilters );
 */
+/**
+ * Add 'staff' to the list of persisted queries so that the parameter remains
+ * when navigating from report to report.
+ *
+ * @param {Array} params - array of report slugs.
+ * @return {Array} - array of report slugs including 'staff'.
+ */
+const persistQueries = ( params ) => {
+	'use strict';
+
+	params.push( 'staff' );
+	return params;
+};
+
+addFilter( 'woocommerce_admin_persisted_queries', 'woocommerce-appointments', persistQueries );

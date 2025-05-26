@@ -242,7 +242,9 @@ if ( 'heading' === $addon_type ) {
 					if ( 'checkbox' === $addon_type ) {
 						?>
 						<div class="wc-pao-addon-content-option-default-header">
-							<?php esc_html_e( 'Default', 'woocommerce-appointments' ); ?>
+							<p class="wc-pao-addon-content-option-default-header-text">
+								<?php esc_html_e( 'Default', 'woocommerce-appointments' ); ?>
+							</p>
 							<?php echo wc_help_tip( __( 'Choose which options are pre-selected by default.', 'woocommerce-appointments' ) ); ?>
 						</div>
 						<?php

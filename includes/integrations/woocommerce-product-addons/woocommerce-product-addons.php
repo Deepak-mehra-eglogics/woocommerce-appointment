@@ -3,17 +3,17 @@
  * Plugin Name: WooCommerce Product Add-Ons
  * Plugin URI: https://woocommerce.com/products/product-add-ons/
  * Description: Add extra options to products which your customers can select from, when adding to the cart, with an optional fee for each extra option. Add-ons can be checkboxes, a select box, or custom text input.
- * Version: 7.7.0
+ * Version: 7.8.1
  * Author: Woo
  * Author URI: https://woocommerce.com
  *
  * Requires PHP: 7.4
  *
  * Requires at least: 6.2
- * Tested up to: 6.7
+ * Tested up to: 6.8
  *
  * WC requires at least: 8.2
- * WC tested up to: 9.7
+ * WC tested up to: 9.8
  *
  * Requires Plugins: woocommerce
  *
@@ -67,7 +67,7 @@ if ( ! function_exists( 'WC' ) || version_compare( WC()->version, '8.2.0' ) < 0 
 
 if ( is_woocommerce_active() && ! class_exists( 'WC_Product_Addons' ) ) :
 
-	define( 'WC_PRODUCT_ADDONS_VERSION', '7.7.0' );
+	define( 'WC_PRODUCT_ADDONS_VERSION', '7.8.1' );
 	define( 'WC_PRODUCT_ADDONS_MAIN_FILE', __FILE__ );
 	define( 'WC_PRODUCT_ADDONS_PLUGIN_URL', WC_APPOINTMENTS_PLUGIN_URL . '/includes/integrations/woocommerce-product-addons' );
 	define( 'WC_PRODUCT_ADDONS_PLUGIN_PATH', WC_APPOINTMENTS_ABSPATH . 'includes/integrations/woocommerce-product-addons' );

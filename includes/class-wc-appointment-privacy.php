@@ -5,15 +5,49 @@ if ( ! class_exists( 'WC_Abstract_Privacy' ) ) {
 
 class WC_Appointment_Privacy extends WC_Abstract_Privacy {
 	/**
+	 * Background process to clean up orders.
+	 *
+	 * @var WC_Privacy_Background_Process
+	 */
+	protected static $background_process;
+
+	/**
 	 * Constructor
 	 *
 	 */
 	public function __construct() {
-		parent::__construct( __( 'Appointments', 'woocommerce-appointments' ) );
+		#parent::__construct( __( 'Appointments', 'woocommerce-appointments' ) );
+		parent::__construct();
 
-		$this->add_exporter( 'woocommerce-appointments-data', __( 'WooCommerce Appointments Data', 'woocommerce-appointments' ), array( $this, 'appointments_data_exporter' ) );
-		$this->add_eraser( 'woocommerce-appointments-data', __( 'WooCommerce Appointments Data', 'woocommerce-appointments' ), array( $this, 'appointments_data_eraser' ) );
+		// Initialize data exporters and erasers.
+		add_action( 'init', [ $this, 'register_erasers_exporters' ] );
 	}
+
+	/**
+	 * Initial registration of privacy erasers and exporters.
+	 *
+	 * Due to the use of translation functions, this should run only after plugins loaded.
+	 */
+	public function register_erasers_exporters() {
+		$this->name = __( 'Appointments', 'woocommerce-appointments' );
+
+		if ( ! self::$background_process ) {
+			self::$background_process = new WC_Privacy_Background_Process();
+		}
+
+		// This hook registers WooCommerce data exporters.
+		$this->add_exporter(
+			'woocommerce-appointments-data',
+			__( 'WooCommerce Appointments Data', 'woocommerce-appointments' ),
+			[ $this, 'appointments_data_exporter' ]
+		);
+
+		// This hook registers WooCommerce data erasers.
+		$this->add_eraser(
+			'woocommerce-appointments-data',
+			__( 'WooCommerce Appointments Data', 'woocommerce-appointments' ),
+			[ $this, 'appointments_data_eraser' ]
+		);	}
 
 	/**
 	 * Returns a list of Appointments for the user.

@@ -5,7 +5,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Polylang for WooCommerce integration class.
  *
- * Last compatibility check: 2.0.1
+ * Last compatibility check: 2.1.4
  */
 class WC_Appointments_Integration_Polylang {
 	/**
@@ -25,13 +25,28 @@ class WC_Appointments_Integration_Polylang {
 		// Post types.
 		add_filter( 'pll_get_post_types', [ $this, 'translate_types' ], 10, 2 );
 
+		// Don't go further if we stopped loading the plugin early ( for example when deactivate-polylang=1 ).
+		if ( ! function_exists( 'PLL' ) ) {
+			return;
+		}
+
 		if ( PLL() instanceof PLL_Admin ) {
 			add_action( 'wp_loaded', [ $this, 'custom_columns' ], 20 );
 			add_action( 'add_meta_boxes', [ $this, 'add_meta_boxes' ], 20 );
 		}
 
 		// Statuses.
-		foreach ( get_wc_appointment_statuses( 'all' ) as $status ) {
+		$statuses = [
+			'unpaid',
+			'paid',
+			'pending-confirmation',
+			'confirmed',
+			'cancelled',
+			'complete',
+			'was-in-cart',
+			'in-cart',
+		];
+		foreach ( $statuses as $status ) {
 			add_action( 'woocommerce_appointment_' . $status, [ $this, 'before_appointment_metabox_save' ] );
 		}
 
@@ -61,7 +76,6 @@ class WC_Appointments_Integration_Polylang {
 		// Add e-mails for translation.
 		add_filter( 'pllwc_order_email_actions', [ $this, 'filter_order_email_actions' ] );
 
-		add_action( 'change_locale', [ $this, 'change_locale' ] );
 		add_action( 'parse_query', [ $this, 'filter_appointments_notifications' ] );
 
 		// Endpoints in emails.
@@ -157,10 +171,6 @@ class WC_Appointments_Integration_Polylang {
 		if ( 'wc_appointment' === $post_type ) {
 			remove_meta_box( 'ml_box', $post_type, 'side' ); // Remove Polylang metabox.
 		}
-	}
-
-	public function change_locale() {
-		load_plugin_textdomain( 'woocommerce-appointments', false, plugin_basename( __DIR__ ) . '/languages' );
 	}
 
 	/**

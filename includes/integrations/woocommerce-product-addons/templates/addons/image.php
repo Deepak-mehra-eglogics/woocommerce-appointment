@@ -2,7 +2,7 @@
 /**
  * The Template for displaying image swatches field.
  *
- * @version 7.6.0
+ * @version 7.8.0
  * @package woocommerce-product-addons
  *
  */
@@ -84,9 +84,28 @@ foreach ( $addon['options'] as $i => $option ) {
 	);
 	$duration_tip     = $duration_prefix && $duration_display ? '<br/>' . wc_appointment_pretty_addon_duration( $duration_raw ) : '';
 
-	$image_src   = wp_get_attachment_image_src( $option['image'], apply_filters( 'woocommerce_product_addons_image_swatch_size', 'thumbnail', $option ) );
-	$image_title = $option['label'] . ' ' . $price_tip . $duration_tip;
-	$price_html  = ' <span class="wc-pao-addon-image-swatch-price">' . esc_html( wptexturize( $option['label'] ) ) . ( ! empty( $price_display ) ? '<span class="wc-pao-addon-price">' . wp_kses_post( $price_display ) . '</span>' : '' ) . ( ! empty( $duration_display ) ? '<span class="wc-pao-addon-duration">' . wp_kses_post( $duration_display ) . '</span>' : '' ) . '</span>';
+	$image_src    = wp_get_attachment_image_src( $option['image'], apply_filters( 'woocommerce_product_addons_image_swatch_size', 'thumbnail', $option ) );
+	$image_title  = $option['label'] . ' ' . $price_tip;
+	$image_width  = 65;
+	$image_height = 65;
+
+	if ( is_array( $image_src ) && count( $image_src ) >= 3 ) {
+		$original_image_width  = $image_src[1];
+		$original_image_height = $image_src[2];
+
+		$aspect_ratio = $original_image_width / $original_image_height;
+
+		if ( $original_image_width > $original_image_height ) {
+			$image_width  = min( $image_width, $original_image_width );
+			$image_height = $image_width / $aspect_ratio;
+		} else {
+			$image_height = min( $image_height, $original_image_height );
+			$image_width  = $image_height * $aspect_ratio;
+		}
+	}
+
+	$price_html = ' <span class="wc-pao-addon-image-swatch-price">' . esc_html( wptexturize( $option['label'] ) ) . ( ! empty( $price_display ) ? '<span class="wc-pao-addon-price">' . wp_kses_post( $price_display ) . '</span>' : '' ) . ( ! empty( $duration_display ) ? '<span class="wc-pao-addon-duration">' . wp_kses_post( $duration_display ) . '</span>' : '' ) . '</span>';
+
 	if ( $selected ) {
 		$selected_html = $price_html;
 	}
@@ -98,8 +117,13 @@ foreach ( $addon['options'] as $i => $option ) {
 		data-value="<?php echo esc_attr( sanitize_title( $option['label'] ) . '-' . $loop ); ?>"
 		data-price="<?php echo esc_attr( $price_html ); ?>"
 	>
-		<img src="<?php echo esc_url( is_array( $image_src ) && $image_src[0] ? $image_src[0] : wc_placeholder_img_src() ); ?>" alt="<?php echo esc_attr( wp_strip_all_tags( $image_title ) ); ?>"/>
-	</a>
+		<img
+			width="<?php echo esc_attr( $image_width ); ?>"
+			height="<?php echo esc_attr( $image_height ); ?>"
+			src="<?php echo esc_url( is_array( $image_src ) && $image_src[0] ? $image_src[0] : wc_placeholder_img_src() ); ?>"
+			alt="<?php echo esc_attr( wp_strip_all_tags( $image_title ) ); ?>"
+		/>
+</a>
 <?php } ?>
 
 <span class="wc-pao-addon-image-swatch-selected-swatch"><?php echo wp_kses_post( $selected_html ); ?></span>

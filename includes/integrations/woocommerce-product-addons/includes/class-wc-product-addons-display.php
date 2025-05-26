@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Product_Addon_Display class.
  *
- * @version 7.3.1
+ * @version 7.8.1
  */
 class WC_Product_Addons_Display {
 	public $show_num_chars;
@@ -215,16 +215,20 @@ class WC_Product_Addons_Display {
 	public function display( $post_id = false, $prefix = false ) {
 		global $product;
 
+		if ( ! is_a( $product, 'WC_Product' ) ) {
+			if ( isset( $GLOBALS['product'] ) ) {
+				$product = $GLOBALS['product'];
+			} else {
+				return;
+			}
+		}
+
 		if ( ! $post_id ) {
 			$post_id = $product->get_id();
 		}
 
 		if ( ! $post_id ) {
 			$post_id = get_the_ID();
-		}
-
-		if ( ! $product && isset( $GLOBALS['product'] ) ) {
-			$product = $GLOBALS['product'];
 		}
 
 		// We do not currently support grouped or external products.

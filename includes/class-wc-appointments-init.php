@@ -28,12 +28,6 @@ class WC_Appointments_Init {
 		add_filter( 'woocommerce_product_class', array( $this, 'woocommerce_product_class' ), 10, 2 );
 		add_filter( 'woocommerce_locate_template', array( $this, 'woocommerce_locate_template' ), 10, 3 ); #For backward compatibility only.
 
-		// Filter the Analytics data.
-		add_filter( 'woocommerce_analytics_products_query_args', [ $this, 'analytics_products_query_args' ] );
-		add_filter( 'woocommerce_analytics_products_stats_query_args', [ $this, 'analytics_products_query_args' ] );
-		add_filter( 'woocommerce_analytics_clauses_join', [ $this, 'analytics_clauses_join' ], 10, 2 );
-		add_filter( 'woocommerce_analytics_clauses_where', [ $this, 'analytics_clauses_where' ], 10, 2 );
-
 		// Default date and time formats must not be empty.
 		add_filter( 'woocommerce_date_format', array( $this, 'default_date_format' ) );
 		add_filter( 'woocommerce_time_format', array( $this, 'default_time_format' ) );
@@ -339,88 +333,6 @@ class WC_Appointments_Init {
 	}
 
 	/**
-	 * Appointable Products filtered under the Analytics page.
-	 *
-	 * @param array $args Query arguments.
-	 *
-	 * @return array Updated query arguments.
-	 */
-	public function analytics_products_query_args( $args ) {
-		if ( 'appointments' === wc_clean( wp_unslash( $_GET['filter'] ?? '' ) ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended
-			if ( isset( $args['meta_query'] ) ) {
-				$args['meta_query'][] = array(
-					'relation' => 'AND',
-					array(
-						'key'     => '_wc_appointment_availability',
-						'compare' => 'EXISTS',
-					),
-					array(
-						'key'     => '_regular_price',
-						'compare' => 'NOT EXISTS',
-					),
-				);
-			} else {
-				$args['meta_query'] = array(
-					'relation' => 'AND',
-					array(
-						'key'     => '_wc_appointment_availability',
-						'compare' => 'EXISTS',
-					),
-					array(
-						'key'     => '_regular_price',
-						'compare' => 'NOT EXISTS',
-					),
-				);
-			}
-		}
-
-		#error_log( var_export( $args, true ) );
-
-		return $args;
-	}
-
-	/**
-	 * Appointable Products filtered via JOIN clause(s).
-	 *
-	 * @param array $clauses The existing clauses.
-	 * @param array $context The context of the clause.
-	 *
-	 * @return array Updated clauses.
-	 */
-	public function analytics_clauses_join( $clauses, $context ) {
-		global $wpdb;
-
-		#error_log( var_export( $_GET['filter'], true ) );
-
-		if ( 'appointments' === wc_clean( wp_unslash( $_GET['filter'] ?? '' ) ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended
-			$clauses[] = " JOIN {$wpdb->prefix}term_relationships ON {$wpdb->prefix}wc_order_product_lookup.product_id = {$wpdb->prefix}term_relationships.object_id";
-			$clauses[] = " JOIN {$wpdb->prefix}term_taxonomy ON {$wpdb->prefix}term_taxonomy.term_taxonomy_id = {$wpdb->prefix}term_relationships.term_taxonomy_id";
-			$clauses[] = " JOIN {$wpdb->prefix}terms ON {$wpdb->prefix}term_taxonomy.term_id = {$wpdb->prefix}terms.term_id";
-		}
-
-		return $clauses;
-	}
-
-	/**
-	 * Appointable Products filtered via WHERE clause(s).
-	 *
-	 * @param array $clauses The existing clauses.
-	 * @param array $context The context of the clause.
-	 *
-	 * @return array Updated clauses.
-	 */
-	public function analytics_clauses_where( $clauses, $context ) {
-		global $wpdb;
-
-		if ( 'appointments' === wc_clean( wp_unslash( $_GET['filter'] ?? '' ) ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended
-			$clauses[] = " AND {$wpdb->prefix}term_taxonomy.taxonomy = 'product_type'";
-			$clauses[] = " AND {$wpdb->prefix}terms.slug = 'appointment'";
-		}
-
-		return $clauses;
-	}
-
-	/**
 	 * Date format should not be zero.
 	 *
 	 * @since 4.2.7
@@ -708,7 +620,6 @@ class WC_Appointments_Init {
 			'i18n_dates'                    => esc_js( __( 'Dates', 'woocommerce-appointments' ) ),
 			'i18n_clear_date_selection'     => esc_js( __( 'To clear selection, pick a new start date', 'woocommerce-appointments' ) ),
 			'i18n_confirmation'             => esc_js( __( 'Are you sure?', 'woocommerce-appointments' ) ),
-			'i18n_appointable_products'     => esc_js( __( 'Appointable products', 'woocommerce-appointments' ) ),
 			'is_admin'                      => is_admin(),
 			'isRTL'                         => is_rtl(),
 			'server_timezone'               => wc_timezone_string(),
@@ -719,6 +630,7 @@ class WC_Appointments_Init {
 		// Variables for JS scripts
 		$appointment_analytics_params = array(
 			'i18n_appointable_products' => esc_js( __( 'Appointable products', 'woocommerce-appointments' ) ),
+			'i18n_staff'                => esc_js( __( 'Staff', 'woocommerce-appointments' ) ),
 		);
 
 		$wc_appointments_date_picker_args = array(

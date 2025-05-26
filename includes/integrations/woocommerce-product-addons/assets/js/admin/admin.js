@@ -642,12 +642,12 @@ jQuery( function( $ ) {
 						$button.removeClass( 'is-hidden' );
 						$button.attr( 'aria-pressed', false );
 						$button.attr( 'aria-label', wc_pao_params.i18n.options_hide_option );
-						$input.val( 1 );
+						$input.attr( 'checked', true );
 					} else {
 						$button.addClass( 'is-hidden' );
 						$button.attr( 'aria-pressed', true );
 						$button.attr( 'aria-label', wc_pao_params.i18n.options_show_option );
-						$input.val( 0 );
+						$input.attr( 'checked', false );
 					}
 
 					// Validate that not all options have been hidden for required add-ons.

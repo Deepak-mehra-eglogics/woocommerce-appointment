@@ -36,7 +36,6 @@ class WC_Appointments_Admin_Exporters {
 		// Register WooCommerce exporters.
 		$this->exporters['appointment_exporter'] = [
 			'menu'       => 'edit.php?post_type=wc_appointment',
-			'name'       => __( 'Appointment Export', 'woocommerce-appointments' ),
 			'capability' => 'export',
 			'callback'   => [ $this, 'appointment_exporter' ],
 		];
@@ -55,9 +54,14 @@ class WC_Appointments_Admin_Exporters {
 	 * Add menu items for our custom exporters.
 	 */
 	public function add_to_menus() {
-		foreach ( $this->exporters as $id => $exporter ) {
-			add_submenu_page( $exporter['menu'], $exporter['name'], $exporter['name'], $exporter['capability'], $id, $exporter['callback'] );
-		}
+		add_submenu_page(
+			'edit.php?post_type=wc_appointment',
+			__( 'Appointment Export', 'woocommerce-appointments' ),
+			__( 'Appointment Export', 'woocommerce-appointments' ),
+			'export',
+			'appointment_exporter',
+			[ $this, 'appointment_exporter' ]
+		);
 	}
 
 	/**
@@ -66,12 +70,12 @@ class WC_Appointments_Admin_Exporters {
 	public function hide_from_menus() {
 		global $submenu;
 
-		foreach ( $this->exporters as $id => $exporter ) {
-			if ( isset( $submenu[ $exporter['menu'] ] ) ) {
-				foreach ( $submenu[ $exporter['menu'] ] as $key => $menu ) {
-					if ( $id === $menu[2] ) {
-						unset( $submenu[ $exporter['menu'] ][ $key ] );
-					}
+		$menu_to_unset = 'edit.php?post_type=wc_appointment';
+
+		if ( isset( $submenu[ $menu_to_unset ] ) ) {
+			foreach ( $submenu[ $menu_to_unset ] as $key => $menu ) {
+				if ( 'appointment_exporter' === $menu[2] ) {
+					unset( $submenu[ $menu_to_unset ][ $key ] );
 				}
 			}
 		}

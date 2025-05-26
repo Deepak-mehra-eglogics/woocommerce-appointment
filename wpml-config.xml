@@ -1,38 +1,38 @@
-<wpml-config>
-    <custom-types>
-        <custom-type translate="0">wc_appointment</custom-type>
-    </custom-types>
-	<custom-fields>
-		<custom-field action="copy">_wc_appointment_availability</custom-field>
-		<custom-field action="copy">_wc_appointment_availability_autoselect</custom-field>
-		<custom-field action="copy">_wc_appointment_availability_span</custom-field>
-		<custom-field action="copy">_wc_appointment_cal_color</custom-field>
-		<custom-field action="copy">_wc_appointment_cancel_limit</custom-field>
-		<custom-field action="copy">_wc_appointment_cancel_limit_unit</custom-field>
-		<custom-field action="copy">_wc_appointment_duration</custom-field>
-		<custom-field action="copy">_wc_appointment_duration_unit</custom-field>
-		<custom-field action="copy">_wc_appointment_has_price_label</custom-field>
-		<custom-field action="translate">_wc_appointment_price_label</custom-field>
-		<custom-field action="copy">_wc_appointment_has_pricing</custom-field>
-		<custom-field action="copy">_wc_appointment_interval</custom-field>
-		<custom-field action="copy">_wc_appointment_interval_unit</custom-field>
-		<custom-field action="copy">_wc_appointment_max_date</custom-field>
-		<custom-field action="copy">_wc_appointment_max_date_unit</custom-field>
-		<custom-field action="copy">_wc_appointment_min_date</custom-field>
-		<custom-field action="copy">_wc_appointment_min_date_unit</custom-field>
-		<custom-field action="copy">_wc_appointment_padding_duration</custom-field>
-		<custom-field action="copy">_wc_appointment_padding_duration_unit</custom-field>
-		<custom-field action="translate">_wc_appointment_price_label</custom-field>
-		<custom-field action="copy">_wc_appointment_pricing</custom-field>
-        <custom-field action="copy">_wc_appointment_has_restricted_days</custom-field>
-        <custom-field action="copy">_wc_appointment_restricted_days</custom-field>
-		<custom-field action="copy">_wc_appointment_qty</custom-field>
-		<custom-field action="copy">_wc_appointment_qty_min</custom-field>
-		<custom-field action="copy">_wc_appointment_qty_max</custom-field>
-		<custom-field action="copy">_wc_appointment_requires_confirmation</custom-field>
-		<custom-field action="copy">_wc_appointment_staff_assignment</custom-field>
-		<custom-field action="translate">_wc_appointment_staff_label</custom-field>
-		<custom-field action="copy">_wc_appointment_user_can_cancel</custom-field>
-        <custom-field action="copy">_wc_appointment_customer_timezones</custom-field>
-	</custom-fields>
-</wpml-config>
+<wpml-config>
+    <custom-types>
+        <custom-type translate="0">wc_appointment</custom-type>
+    </custom-types>
+	<custom-fields>
+		<custom-field action="copy">_wc_appointment_availability</custom-field>
+		<custom-field action="copy">_wc_appointment_availability_autoselect</custom-field>
+		<custom-field action="copy">_wc_appointment_availability_span</custom-field>
+		<custom-field action="copy">_wc_appointment_cal_color</custom-field>
+		<custom-field action="copy">_wc_appointment_cancel_limit</custom-field>
+		<custom-field action="copy">_wc_appointment_cancel_limit_unit</custom-field>
+		<custom-field action="copy">_wc_appointment_duration</custom-field>
+		<custom-field action="copy">_wc_appointment_duration_unit</custom-field>
+		<custom-field action="copy">_wc_appointment_has_price_label</custom-field>
+		<custom-field action="translate">_wc_appointment_price_label</custom-field>
+		<custom-field action="copy">_wc_appointment_has_pricing</custom-field>
+		<custom-field action="copy">_wc_appointment_interval</custom-field>
+		<custom-field action="copy">_wc_appointment_interval_unit</custom-field>
+		<custom-field action="copy">_wc_appointment_max_date</custom-field>
+		<custom-field action="copy">_wc_appointment_max_date_unit</custom-field>
+		<custom-field action="copy">_wc_appointment_min_date</custom-field>
+		<custom-field action="copy">_wc_appointment_min_date_unit</custom-field>
+		<custom-field action="copy">_wc_appointment_padding_duration</custom-field>
+		<custom-field action="copy">_wc_appointment_padding_duration_unit</custom-field>
+		<custom-field action="translate">_wc_appointment_price_label</custom-field>
+		<custom-field action="copy">_wc_appointment_pricing</custom-field>
+        <custom-field action="copy">_wc_appointment_has_restricted_days</custom-field>
+        <custom-field action="copy">_wc_appointment_restricted_days</custom-field>
+		<custom-field action="copy">_wc_appointment_qty</custom-field>
+		<custom-field action="copy">_wc_appointment_qty_min</custom-field>
+		<custom-field action="copy">_wc_appointment_qty_max</custom-field>
+		<custom-field action="copy">_wc_appointment_requires_confirmation</custom-field>
+		<custom-field action="copy">_wc_appointment_staff_assignment</custom-field>
+		<custom-field action="translate">_wc_appointment_staff_label</custom-field>
+		<custom-field action="copy">_wc_appointment_user_can_cancel</custom-field>
+        <custom-field action="copy">_wc_appointment_customer_timezones</custom-field>
+	</custom-fields>
+</wpml-config>

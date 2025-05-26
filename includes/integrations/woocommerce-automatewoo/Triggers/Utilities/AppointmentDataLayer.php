@@ -22,7 +22,6 @@ trait AppointmentDataLayer {
 	 * @return string[]
 	 */
 	protected function get_supplied_data_items_for_appointment(): array {
-		return [ 'appointment', DataTypes::CUSTOMER, DataTypes::PRODUCT ];
 		return [ 'appointment', DataTypes::CUSTOMER, DataTypes::PRODUCT, DataTypes::ORDER ];
 	}
 

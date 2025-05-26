@@ -900,10 +900,10 @@ class WC_Appointments_Integration_Twilio_SMS {
 	 * @since 4.4.0
 	 *
 	 * @param string $notification the notification slug
-	 * @param \WC_Product|null $product
+	 * @param ?WC_Product|null $product
 	 * @return string|null $template
 	 */
-	protected function get_template( $notification, \WC_Product $product = null ) {
+	protected function get_template( $notification, ?WC_Product $product = null ) {
 		// default to global template before checking for product-specific template
 		$template = get_option( "wc_twilio_sms_appointments_{$notification}_template", '' );
 
@@ -995,10 +995,10 @@ class WC_Appointments_Integration_Twilio_SMS {
 	 * @since 4.4.0
 	 *
 	 * @param string $notification the notification slug
-	 * @param \WC_Product|null $product
+	 * @param ?WC_Product|null $product
 	 * @return string|null schedule in the format d:s+ (example: 5:days)
 	 */
-	public function get_notification_schedule( $notification, \WC_Product $product = null ) {
+	public function get_notification_schedule( $notification, ?WC_Product $product = null ) {
 		// default to global schedule before checking for product-specific schedule
 		$schedule = get_option( "wc_twilio_sms_appointments_{$notification}_schedule", '' );
 

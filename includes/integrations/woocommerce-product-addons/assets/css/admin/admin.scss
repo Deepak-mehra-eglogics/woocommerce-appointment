@@ -796,6 +796,31 @@
     grid-column: 13 / 14
 }
 
+@media( max-width: 782px ) {
+    .wc-pao-addon-option-visibility-toggle {
+        display: none !important
+    }
+}
+
+@media(min-width: 782px) {
+    .wc-pao-addon-option-visibility-checkbox {
+        display:none !important
+    }
+
+    .wc-pao-addon-option-visibility-label {
+        display: none !important
+    }
+
+    .checkboxes .wc-pao-addon-content-remove {
+        align-self: center;
+        justify-self: center;
+    }
+}
+
+.wc-pao-addon-content label.wc-pao-addon-option-visibility-label {
+    display: inline-block
+}
+
 .wc-pao-addon-content-remove {
     align-self: center;
     justify-self: center;
@@ -854,7 +879,6 @@
 }
 
 .wc-pao-addon-content-remove a.button {
-    display: block;
     text-indent: -9999px;
     position: relative;
     height: 1em;
@@ -866,7 +890,12 @@
     width: 2em;
     overflow: hidden;
     vertical-align: middle;
-    min-width: 30px
+    min-width: 30px;
+    min-height: 30px
+}
+
+.wc-pao-addon-content-remove {
+    text-align: center
 }
 
 .wc-pao-addon-content-remove a::after {
@@ -1321,7 +1350,7 @@ input.wc-pao-error {
     }
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 782px) {
     #woocommerce-product-data .wc-pao-addon-option-row {
         display:block;
         align-items: center
@@ -1361,10 +1390,6 @@ input.wc-pao-error {
     .wc-pao-addon-content-default.hide {
         display: none !important
     }
-
-    .wc-pao-addon-content-visibility {
-        justify-self: center
-    }
 }
 
 @media (min-width: 1250px) {
@@ -1375,7 +1400,7 @@ input.wc-pao-error {
     }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 782px) {
     .product_page_addons .wc-pao-addon-option-row {
         display:block;
         align-items: center
@@ -1437,11 +1462,11 @@ input.wc-pao-error {
     }
 
     .wc-pao-addon-content-visibility {
-        justify-self: center
+        justify-self: left
     }
 }
 
-@media (min-width: 720px) {
+@media (min-width: 782px) {
     .product_page_addons .wc-pao-addon-content-price-type-header .wc-pao-addon-content-price-wrap,
 	.woocommerce table.form-table .wc-pao-addon-content-price-wrap {
         align-items:center;

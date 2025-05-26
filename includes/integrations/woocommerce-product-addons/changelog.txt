@@ -1,5 +1,13 @@
 *** Product Addons Changelog ***
 
+2025.04.10 - version 7.8.1
+* Fix - Improved handling of add-ons display to prevent conflicts when the global product object is missing.
+
+2025.04.08 - version 7.8.0
+* Tweak - Important: Updated the image.php template, which is responsible for displaying Multiple Choice add-ons as images.
+* Tweak - Added width and height attributes on multiple choice option images.
+* Fix - Resolved some styling issues in the Products > Add-Ons configuration screen
+
 2025.03.10 - version 7.7.0
 * New - Added support for Product Add-Ons selection in Store API.
 * Fix - Fixed an issue with long multiple choice options not being selected.

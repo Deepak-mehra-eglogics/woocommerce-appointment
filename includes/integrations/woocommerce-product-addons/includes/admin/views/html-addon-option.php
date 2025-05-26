@@ -74,10 +74,13 @@ if ( 'show' === $opt_show_image_swatch ) {
 				data-loop="<?php echo esc_attr( $loop ); ?>"
 				data-index="<?php echo esc_attr( $index ); ?>">
 		</button>
-		<input type="hidden" name="product_addon_option_visibility[<?php echo esc_attr( $loop ); ?>][<?php echo esc_attr( $index ); ?>]"
+		<input type="checkbox" name="product_addon_option_visibility[<?php echo esc_attr( $loop ); ?>][<?php echo esc_attr( $index ); ?>]"
 				id="product_addon_option_visibility_<?php echo esc_attr( $loop . '_' . $index ); ?>"
-				value="<?php echo esc_attr( $opt_visible ); ?>"
-				class="wc-pao-addon-option-visibility" />
+				value="1"
+				<?php checked( $opt_visible, 1 ); ?>
+				class="wc-pao-addon-option-visibility-checkbox" />
+		<label class="wc-pao-addon-option-visibility-label" for="product_addon_option_visibility_<?php echo esc_attr( $loop . '_' . $index ); ?>"><?php esc_html_e( 'Visible', 'woocommerce-appointments' ); ?></label>
+
 	</div>
 	<div class="wc-pao-addon-content-remove">
 		<a href="#" class="wc-pao-remove-option button wc-action-button delete" aria-label="<?php esc_attr_e( 'Delete option', 'woocommerce-appointments' ); ?>"></a>

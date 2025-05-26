@@ -18,7 +18,7 @@ require_once WC_PRODUCT_ADDONS_PLUGIN_PATH . '/includes/groups/class-wc-product-
  * Product Add-Ons admin.
  *
  * @class    WC_Product_Addons_Admin
- * @version  7.6.0
+ * @version  7.8.0
  */
 class WC_Product_Addons_Admin {
 
@@ -932,7 +932,7 @@ class WC_Product_Addons_Admin {
 					$option_price_type    = $addon_option_price_type[ $i ];
 					$option_duration_type = $addon_option_duration_type[ $i ]; #appointments
 					$option_image         = $addon_option_image[ $i ];
-					$option_visibility    = $addon_option_visibility[ $i ];
+					$option_visibility    = isset( $addon_option_visibility[ $i ] ) ? $addon_option_visibility[ $i ] : array();
 
 					for ( $ii = 0; $ii < count( $option_label ); $ii++ ) {
 						if ( isset( $option_default[ $ii ] ) ) {
@@ -944,7 +944,7 @@ class WC_Product_Addons_Admin {
 						$image         = sanitize_text_field( wp_unslash( $option_image[ $ii ] ) );
 						$price_type    = sanitize_text_field( wp_unslash( $option_price_type[ $ii ] ) );
 						$duration_type = sanitize_text_field( wp_unslash( $option_duration_type[ $ii ] ) ); #appointments
-						$visibility    = '0' === $option_visibility[ $ii ] ? 0 : 1;
+						$visibility    = isset( $option_visibility[ $ii ] ) && '1' === $option_visibility[ $ii ] ? 1 : 0;
 
 						$addon_options[] = array(
 							'label'         => $label,
