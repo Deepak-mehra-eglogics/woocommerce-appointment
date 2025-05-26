@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "woocommerce-product-addons/product-addons",
+  "version": "0.1.0",
+  "title": "PAO Addons List",
+  "category": "widgets",
+  "icon": "flag",
+  "description": "Show add-ons.",
+  "attributes": {
+    "__editorContent": {
+      "type": "string",
+      "__experimentalRole": "content"
+    }
+  },
+  "supports": {
+    "html": false,
+    "inserter": false
+  },
+  "textdomain": "woocommerce-product-addons",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./style-index.css",
+  "usesContext": [
+    "postType"
+  ]
+}

@@ -1,0 +1,102 @@
+<?php
+/**
+ * Abstract class CRUD class generic objects such as appointments and staff extend.
+ *
+ * @package WooCommerce\Appointments\Rest\Controller
+ */
+
+/**
+ * Abstract REST API CRUD controller class.
+ */
+abstract class WC_Appointments_REST_CRUD_Controller extends WC_REST_CRUD_Controller {
+
+	/**
+	 * Endpoint namespace.
+	 *
+	 * @var string
+	 */
+	protected $namespace = WC_Appointments_REST_API::V1_NAMESPACE;
+
+	/**
+	 * Register the routes.
+	 */
+	public function register_routes() {
+		register_rest_route(
+			$this->namespace,
+			'/' . $this->rest_base,
+			[
+				[
+					'methods'             => WP_REST_Server::READABLE,
+					'callback'            => [ $this, 'get_items' ],
+					'permission_callback' => [ $this, 'get_items_permissions_check' ],
+					'args'                => $this->get_collection_params(),
+				],
+				[
+					'methods'             => WP_REST_Server::CREATABLE,
+					'callback'            => [ $this, 'create_item' ],
+					'permission_callback' => [ $this, 'create_item_permissions_check' ],
+					'args'                => $this->get_endpoint_args_for_item_schema( WP_REST_Server::CREATABLE ),
+				],
+				'schema' => [ $this, 'get_item_schema' ],
+			]
+		);
+
+		register_rest_route(
+			$this->namespace,
+			'/' . $this->rest_base . '/(?P<id>[\d]+)',
+			[
+				'args'   => [
+					'id' => [
+						'description' => __( 'Unique identifier for the resource.', 'woocommerce-appointments' ),
+						'type'        => 'integer',
+					],
+				],
+				[
+					'methods'             => WP_REST_Server::READABLE,
+					'callback'            => [ $this, 'get_item' ],
+					'permission_callback' => [ $this, 'get_item_permissions_check' ],
+					'args'                => [
+						'context' => $this->get_context_param(
+							[
+								'default' => 'view',
+							]
+						),
+					],
+				],
+				[
+					'methods'             => WP_REST_Server::EDITABLE,
+					'callback'            => [ $this, 'update_item' ],
+					'permission_callback' => [ $this, 'update_item_permissions_check' ],
+					'args'                => $this->get_endpoint_args_for_item_schema( WP_REST_Server::EDITABLE ),
+				],
+				[
+					'methods'             => WP_REST_Server::DELETABLE,
+					'callback'            => [ $this, 'delete_item' ],
+					'permission_callback' => [ $this, 'delete_item_permissions_check' ],
+					'args'                => [
+						'force' => [
+							'default'     => false,
+							'description' => __( 'Whether to bypass trash and force deletion.', 'woocommerce-appointments' ),
+							'type'        => 'boolean',
+						],
+					],
+				],
+				'schema' => [ $this, 'get_item_schema' ],
+			]
+		);
+
+		register_rest_route(
+			$this->namespace,
+			'/' . $this->rest_base . '/batch',
+			[
+				[
+					'methods'             => WP_REST_Server::EDITABLE,
+					'callback'            => [ $this, 'batch_items' ],
+					'permission_callback' => [ $this, 'batch_items_permissions_check' ],
+					'args'                => $this->get_endpoint_args_for_item_schema( WP_REST_Server::EDITABLE ),
+				],
+				'schema' => [ $this, 'get_public_batch_schema' ],
+			]
+		);
+	}
+}

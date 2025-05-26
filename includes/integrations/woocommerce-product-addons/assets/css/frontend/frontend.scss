@@ -1,0 +1,381 @@
+.wc-pao-addons-container {
+    margin-bottom: 10px
+}
+
+.woocommerce select.wc-pao-addon-image-swatch-select {
+    display: none !important
+}
+
+.wc-pao-addon-image-swatch-selected-swatch {
+    display: block;
+}
+
+.wc-pao-addon-image-swatch {
+	display: inline-block;
+	outline: 1px solid #ddd;
+	padding: 2px;
+	margin-right: 5px;
+	margin-bottom: 2px;
+	&:hover,
+	&:active,
+	&:focus {
+		outline: 1px solid #666;
+	}
+	&.selected {
+		outline-color: #0f834d;
+		outline-width: 2px;
+	}
+
+	img {
+		max-width: 65px;
+		max-height: 65px;
+	}
+}
+
+#required_addons_validation_message {
+    margin: 0 0 30px;
+    display: none
+}
+
+.wc-pao-validation-notice {
+    display: block;
+    color: #e2401c;
+    font-size: small;
+    line-height: 1.1em;
+    margin-top: 5px;
+}
+
+.wc-pao-addon-heading {
+	margin: 1em 0 0;
+}
+
+.wc-pao-addon {
+	margin: 0 0 1em;
+	padding: 0 2px;
+
+	p {
+		margin: 0;
+	}
+	.wc-pao-addon-name {
+		margin-top: 0;
+		display: inline-block;
+	}
+	label.wc-pao-addon-name {
+		font-weight: bold;
+	}
+	.wc-pao-addon-description {
+		font-style: italic;
+		p {
+			margin-bottom: 12px;
+		}
+	}
+	.wc-pao-addon-wrap {
+		margin: .5em 0 0 0;
+
+		select {
+			width: auto;
+			min-width: 50%;
+		}
+
+		.wc-pao-addon-checkbox {
+			align-self: center;
+			margin-right: 4px;
+		}
+
+		.wc-pao-addon-radio {
+			align-self: center;
+		}
+	}
+}
+
+.wc-pao-cart-quantity-field input {
+	background: none !important;
+	outline: 0 !important;
+	border: 0 !important;
+	box-shadow: none !important;
+}
+
+.wc-pao-addon-chars-remaining {
+	display: none;
+	&.visible {
+		display: inline-block;
+	}
+}
+
+.woocommerce .wc-pao-addon .wc-pao-addon-wrap label {
+	display: inline;
+}
+
+.wc-pao-addon abbr.required {
+	text-decoration: none !important;
+}
+
+div.product-addon-totals {
+	margin: 20px 0 40px 0;
+	padding: 20px 0 0 0;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	overflow: hidden;
+
+	ul {
+		list-style: none;
+		margin: 0;
+
+		li {
+			display: flex;
+			justify-content: space-between;
+			padding: 5px 0;
+		}
+	}
+
+	.wc-pao-subtotal-line {
+		justify-content: flex-end;
+		border-top: 1px solid #eee;
+		padding: 10px 0;
+		margin-top: 20px;
+	}
+}
+
+.single-product
+	div.product
+	div.product-addon-totals
+	.wc-pao-subtotal-line
+	p.price {
+	margin: 0;
+}
+
+/**
+ * Tooltips
+ */
+.tips {
+	cursor: help;
+	text-decoration: none;
+}
+
+img.tips {
+	padding: 5px 0 0;
+}
+
+#tiptip_holder {
+	display: none;
+	z-index: 8675309;
+	position: absolute;
+	top: 0;
+	left: 0;
+	&.tip_top {
+		padding-bottom: 5px;
+
+		#tiptip_arrow_inner {
+			margin-top: -7px;
+			margin-left: -6px;
+			border-top-color: #333;
+		}
+	}
+	&.tip_bottom {
+		padding-top: 5px;
+
+		#tiptip_arrow_inner {
+			margin-top: -4px;
+			margin-left: -6px;
+			border-bottom-color: #333;
+		}
+	}
+	&.tip_right {
+		padding-left: 5px;
+
+		#tiptip_arrow_inner {
+			margin-top: -6px;
+			margin-left: -5px;
+			border-right-color: #333;
+		}
+	}
+	&.tip_left {
+		padding-right: 5px;
+
+		#tiptip_arrow_inner {
+			margin-top: -6px;
+			margin-left: -7px;
+			border-left-color: #333;
+		}
+	}
+}
+
+#tiptip_content,
+.chart-tooltip,
+.wc_error_tip {
+	color: #fff;
+	font-size: .8em;
+	max-width: 150px;
+	background: #333;
+	text-align: center;
+	border-radius: 3px;
+	padding: .618em 1em;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+}
+
+#tiptip_content code,
+.chart-tooltip code,
+.wc_error_tip code {
+	padding: 1px;
+	background: #888;
+}
+
+#tiptip_arrow,
+#tiptip_arrow_inner {
+	position: absolute;
+	border-color: rgba(0,0,0,0);
+	border-style: solid;
+	border-width: 6px;
+	height: 0;
+	width: 0;
+}
+
+.wc_pao_datepicker {
+    width: 40em;
+    font-size: 10px;
+    padding: 0 1.3em 2.3em;
+    background-color: #f5f5f5;
+    color: #060606;
+    z-index: 9999 !important;
+
+	div, span, h1, h2, h3, h4, h5, h6, p, pre, a, abbr, acronym, big, cite, code, del, dfn, em, img,
+	ins, kbd, q, s, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
+	fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside,
+	canvas, details, embed, figure, figcaption, footer, header, hgroup, section {
+	    margin: 0;
+	    padding: 0;
+	    border: 0;
+	    font-size: 100%;
+	    font: inherit;
+	    vertical-align: baseline;
+	}
+
+	table {
+	    border-collapse: collapse;
+	    border-spacing: 0;
+	}
+
+	.ui-datepicker-header {
+	    font-size: 1em;
+	    overflow: hidden;
+
+		.ui-datepicker-prev,
+		.ui-datepicker-next {
+		    padding: 1em;
+		    cursor: pointer;
+		    color: #060606;
+		    -webkit-user-select: none;
+		    -ms-user-select: none;
+		    user-select: none;
+
+			&:hover {
+			    color: #000;
+			}
+
+			&.ui-state-disabled {
+			    color: #bbb;
+			    cursor: initial;
+			}
+		}
+
+		.ui-datepicker-prev {
+		    float: left;
+		}
+
+		.ui-datepicker-next {
+		    float: right;
+		}
+
+		.ui-datepicker-title {
+		    text-align: center;
+		    font-weight: bold;
+		    padding: 1em;
+		}
+	}
+
+	table.ui-datepicker-calendar {
+	    font-size: 1.4em;
+	    -webkit-user-select: none;
+	    -ms-user-select: none;
+	    user-select: none;
+	    width: 100%;
+
+		th,
+		td {
+		    background-color: rgba(0,0,0,0) !important;
+		    text-align: center;
+		}
+
+		td.ui-datepicker-current-day a {
+		    color: #000 !important;
+		    cursor: default;
+
+			&:hover {
+			    color: #000;
+			}
+		}
+
+		td.ui-datepicker-current-day:after {
+		    background-color: #fff !important;
+		}
+
+		td:after {
+		    content: "";
+		    position: absolute;
+		    background-color: rgba(0,0,0,0);
+		    border-radius: 50%;
+		    width: 2.3em;
+		    height: 2.3em;
+		    top: 50%;
+		    left: 50%;
+		    z-index: 1;
+		    -ms-transform: translate(-50%, -50%);
+		    transform: translate(-50%, -50%);
+		}
+
+		th span {
+		    font-weight: 500;
+		    padding: .5em;
+		    display: block;
+		    color: #bbb;
+		    font-weight: bold;
+		}
+
+		td.ui-state-disabled span {
+		    color: #bbbbbc;
+		}
+
+		td:not(.ui-state-disabled) {
+		    position: relative;
+
+			a {
+			    position: relative;
+			    z-index: 2;
+			    font-weight: 500;
+			    padding: .5em;
+			    display: block;
+			    color: #2f2f2f;
+			    font-weight: bold;
+			}
+
+			&:hover a {
+			    color: #000;
+			}
+
+			&:hover:after {
+			    background-color: #fff;
+			}
+		}
+	}
+}
+
+.reset_date {
+    display: none;
+    font-size: .9em
+}
+.wc-pao-addon .reset_file.inactive {
+    display: none
+}
+.wc-pao-addon .reset_file.active {
+    display: block
+}

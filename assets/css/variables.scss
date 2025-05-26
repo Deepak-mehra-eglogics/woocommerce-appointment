@@ -1,0 +1,30 @@
+$woocommerce: 		#ad74a2;
+$green:				#7ad03a;
+$dark-green:		#27ae60;
+$red:				#f00;
+$orange:			#ffba00;
+$blue:				#2ea2cc;
+$grey:				#999;
+$white:             #fff;
+$black:             #000;
+$wp-primary:        #0073aa;
+
+$primary:           #111;                                       // Primary colour for buttons (alt)
+$primarytext:       desaturate(lighten($primary, 50%), 18%);    // Text on primary colour bg
+
+$secondary:         desaturate(lighten($primary, 40%), 21%);    // Secondary buttons
+$secondarytext:     desaturate(darken($secondary, 60%), 21%);   // Text on secondary colour bg
+
+$highlight:         adjust-hue($primary, 150deg);               // Prices, In stock labels, sales flash
+$highlightext:      desaturate(lighten($highlight, 50%), 18%);  // Text on highlight colour bg
+
+$contentbg:         #fff;                                       // Content BG - Tabs (active state)
+$subtext:           #777;                                       // small, breadcrumbs etc
+
+$elabel-height:		80px;
+$alabel-height:		30px;
+$labels-height:		60px;
+$labels-width:		70px;
+$column-width:		170px;
+$wrapper-height:    24*60px;
+$hours-height:		100% / 24;
